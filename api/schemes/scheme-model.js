@@ -53,8 +53,13 @@ function add(schemeObj){
     })
 }
 
-function update(){
-
+function update(id, changes){
+    return db('schemes')
+    .where({id})
+    .update(changes)
+    .then(schemes => {
+        return findById(id)
+    })
 }
 
 function remove(){

@@ -82,19 +82,16 @@ router.put('/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Schemes.findById(id)
-    .then(scheme => {
-      if (scheme) {
-        return Schemes.update(changes, id);
+  Schemes.update(id, changes)
+    .then(schemes => {
+      if (schemes) {
+        res.json({ data: schemes });
       } else {
-        res.status(404).json({ message: 'Could not find scheme with given id' });
+        res.status(404).json({ message: "Could not find scheme with given id" });
       }
     })
-    .then(updatedScheme => {
-      res.json(updatedScheme);
-    })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to update scheme' });
+      res.status(500).json({ message: "Failed to update sheme" });
     });
 });
 
