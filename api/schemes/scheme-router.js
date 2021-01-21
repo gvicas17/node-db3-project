@@ -83,15 +83,15 @@ router.put('/:id', (req, res) => {
   const changes = req.body;
 
   Schemes.update(id, changes)
-    .then(schemes => {
-      if (schemes) {
-        res.json({ data: schemes });
+    .then(user => {
+      if (user) {
+        res.json({ data: user });
       } else {
-        res.status(404).json({ message: "Could not find scheme with given id" });
+        res.status(404).json({ message: "Could not find user with given id" });
       }
     })
     .catch(err => {
-      res.status(500).json({ message: "Failed to update sheme" });
+      res.status(500).json({ message: "Failed to update user" });
     });
 });
 
